@@ -21,7 +21,7 @@
 <body>
 <change-language-component></change-language-component>
 <div id="camera"
-     style="z-index:50;position: fixed;top:0;left:0;background-color: black;width: 100vw;height: 100vh;display: none;justify-content: center;align-items: center;overflow: hidden;">
+     style="z-index:;position: fixed;top:0;left:0;background-color: black;width: 100vw;height: 100vh;display: none;justify-content: center;align-items: center;overflow: hidden;">
     <div id="video_close" onclick="closeCamera()"
          style="background-color: white;width:1.5rem;line-height: 1.5rem;text-align: center;border-radius: 0.75rem;position: absolute;top: 2rem;left: 2rem">
         ×
@@ -32,7 +32,7 @@
     <video autoplay id="video"></video>
 </div>
 <a class="normalButton" id="back-button"
-   style="display: flex;align-items:center;margin-top: 1.2rem;margin-left: 0.5rem;border: 1px solid var(--base-green);border-radius: 50%;width: min-content;"
+   style="display: flex;align-items:center;margin-top: 1.2rem;margin-left: 0.5rem;border: 1px solid var(--base-green);border-radius: %;width: min-content;"
    href="home.html">
     <img style="padding: 0.8rem;" width="22" height="22" src="media/Back.svg" alt="back">
 </a>
@@ -295,7 +295,7 @@
     const goConfirm = () => {
         code = "";
         NextRolling.style.display = "block";
-        if (parseFloat(amount) > 50) {
+        if (parseFloat(amount) > 300) {
             fetch('https://flows.thecharityproject.XYZ/webhook/kZPhvME8os49M9gmmovJ/create_payment_pin', {
                 method: 'POST',
                 credentials: "include",
