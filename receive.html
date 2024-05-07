@@ -12,9 +12,9 @@
     <script type="text/javascript" src="dist/trans.js"></script>
     <script type="module" src="component/ChangeLanguage.js"></script>
     <script>
-        if (sessionStorage.getItem("IsLogin") !== "true") {
-            location.replace("index.html")
-        }
+        // if (sessionStorage.getItem("IsLogin") !== "true") {
+        //     location.replace("index.html")
+        // }
     </script>
 </head>
 <body>
@@ -115,7 +115,7 @@
         // utterance.volume = 0;
         // speechSynthesis.speak(utterance);
         const utterance = new SpeechSynthesisUtterance(`你收到了 10 蚊錢！`);
-        utterance.lang = 'zh-HK';
+        utterance.lang = 'zh-TW';
         speechSynthesis.speak(utterance);
         isMute = false;
         muteIcon.style.display = "none";
