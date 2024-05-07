@@ -110,9 +110,12 @@
     const setUnMute = () => {
         moneyAudio.play();
         moneyAudio.src = "media/money.mp3"
-        const utterance = new SpeechSynthesisUtterance(``);
-        utterance.lang = 'en-US';
-        utterance.volume = 0;
+        // const utterance = new SpeechSynthesisUtterance(``);
+        // utterance.lang = 'en-US';
+        // utterance.volume = 0;
+        // speechSynthesis.speak(utterance);
+        const utterance = new SpeechSynthesisUtterance(`你收到了 10 蚊錢！`);
+        utterance.lang = 'zh-HK';
         speechSynthesis.speak(utterance);
         isMute = false;
         muteIcon.style.display = "none";
