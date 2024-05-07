@@ -12,9 +12,9 @@
     <script type="text/javascript" src="dist/trans.js"></script>
     <script type="module" src="component/ChangeLanguage.js"></script>
     <script>
-        // if (sessionStorage.getItem("IsLogin") !== "true") {
-        //     location.replace("index.html")
-        // }
+        if (sessionStorage.getItem("IsLogin") !== "true") {
+            location.replace("index.html")
+        }
     </script>
 </head>
 <body>
@@ -107,31 +107,12 @@
     const unmuteIcon = document.getElementById("unmute-icon");
     let isMute = true
 
-    function loadVoices(speechSynthesis){
-        if (voices.length === 0){
-            window.setTimeout(function() {
-                voices = window.speechSynthesis.getVoices();
-                voices.sort(function(voice1, voice2){
-                    return voice1.name.localeCompare(voice2.name);
-                });
-            }, 100);
-        }
-    }
-
-    var voices = [];
-    window.addEventListener("load", function(){
-        loadVoices(speechSynthesis);
-        speechSynthesis.addEventListener("voiceschanged", function(){
-            loadVoices(speechSynthesis);
-        });
-    });
-
     const setUnMute = () => {
         moneyAudio.play();
-        moneyAudio.src = "media/money.mp3";
-        const utterance = new SpeechSynthesisUtterance(`你收到了10蚊錢！`);
-        utterance.lang = 'zh-HK';
-        utterance.volume = 100;
+        moneyAudio.src = "media/money.mp3"
+        const utterance = new SpeechSynthesisUtterance(``);
+        utterance.lang = 'en-US';
+        utterance.volume = 0;
         speechSynthesis.speak(utterance);
         isMute = false;
         muteIcon.style.display = "none";
@@ -302,8 +283,8 @@
                 location.replace("home.html")
             }
         } catch (e) {
-            // console.error('profileError:', e)
-            // location.replace("index.html")
+            console.error('profileError:', e)
+            location.replace("index.html")
         }
     }).catch(error => {
         console.error('networkError:', error)
