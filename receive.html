@@ -12,9 +12,9 @@
     <script type="text/javascript" src="dist/trans.js"></script>
     <script type="module" src="component/ChangeLanguage.js"></script>
     <script>
-        // if (sessionStorage.getItem("IsLogin") !== "true") {
-        //     location.replace("index.html")
-        // }
+        if (sessionStorage.getItem("IsLogin") !== "true") {
+            location.replace("index.html")
+        }
     </script>
 </head>
 <body>
@@ -110,12 +110,9 @@
     const setUnMute = () => {
         moneyAudio.play();
         moneyAudio.src = "media/money.mp3"
-        // const utterance = new SpeechSynthesisUtterance(``);
-        // utterance.lang = 'en-US';
-        // utterance.volume = 0;
-        // speechSynthesis.speak(utterance);
-        const utterance = new SpeechSynthesisUtterance(`你收到了10蚊錢！`);
-        utterance.lang = 'zh-TW';
+        const utterance = new SpeechSynthesisUtterance(``);
+        utterance.lang = 'en-US';
+        utterance.volume = 0;
         speechSynthesis.speak(utterance);
         isMute = false;
         muteIcon.style.display = "none";
