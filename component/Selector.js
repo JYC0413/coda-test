@@ -105,6 +105,9 @@ class Selector extends HTMLElement {
                 }
                 selectOptionList.appendChild(valueItem)
                 if (this.defaultValue) {
+                    if(that.type === "time") {
+                        this.defaultValue = transDate(this.defaultValue, language === "en" ? "en-US" : "zh-HK");
+                    }
                     setValue(this.defaultValue)
                 }
             })
