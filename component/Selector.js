@@ -106,6 +106,7 @@ class Selector extends HTMLElement {
                 selectOptionList.appendChild(valueItem)
                 if (this.defaultValue) {
                     if(that.type === "time") {
+                        const language = sessionStorage.getItem("codaLanguage")
                         this.defaultValue = transDate(this.defaultValue, language === "en" ? "en-US" : "zh-HK");
                     }
                     setValue(this.defaultValue)
