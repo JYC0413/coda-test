@@ -206,7 +206,8 @@
         const date = new Date(monthStr.value);
         const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
         const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1).getTime() - 1;
-
+        console.log(firstDay)
+        console.log(lastDay)
         transactionData.filter(item => {
             const differentLength = 13 - item.timestamp.toString().length;
             const timestamp = item.timestamp * (10 ** differentLength);
