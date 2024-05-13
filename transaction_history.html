@@ -142,6 +142,7 @@
                 }
                 return item;
             })
+            console.log(timeSelector.value)
             filterByMonth(timeSelector.value || getFirstDayOfMonthTimestamp())
         } else if (response.status === 401) {
             alert("Your login has expired. Please login again~");
