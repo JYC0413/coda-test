@@ -122,6 +122,12 @@
         }
     }
 
+    function getFirstDayOfMonthTimestamp() {
+        const now = new Date();
+        const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+        return firstDay.setHours(0, 0, 0, 0);
+    }
+
     const processTransaction = async (response) => {
         if (response.status === 200) {
             const getData = await response.json();
@@ -136,7 +142,7 @@
                 }
                 return item;
             })
-            filterByMonth(timeSelector.value || new Date())
+            filterByMonth(timeSelector.value || getFirstDayOfMonthTimestamp())
         } else if (response.status === 401) {
             alert("Your login has expired. Please login again~");
             location.replace("index.html");
@@ -170,9 +176,9 @@
     }
 
     let current = new Date();
-    let startMonth = 11;
+    let startMonth = 4;
     let currentMonth = current.getMonth() + 1;
-    let startYear = 2023;
+    let startYear = 2024;
     let currentYear = current.getFullYear();
 
     function updateTimerList() {
