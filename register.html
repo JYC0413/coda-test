@@ -226,7 +226,7 @@
         if (termsOfUseCheck.checked) {
             loginRolling.style.display = "block";
             closeRegister();
-            fetch('https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/activate/' + code, {
+            fetch('https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/activate/' + code, {
                 method: 'GET',
                 credentials: "include",
                 headers: {
@@ -288,7 +288,7 @@
         codeRolling.style.display = "block";
         getCodeNote.style.display = "block";
         setButtonText("Sending");
-        fetch('https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/register', {
+        fetch('https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/register', {
             method: 'POST',
             credentials: "include",
             headers: {
