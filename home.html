@@ -7,11 +7,8 @@
     <link href="./dist/css/index.css" rel="stylesheet">
     <script type="module" src="component/CollapseLabel.js"></script>
     <link rel="icon" type="image/png" href="media/coda-logo.png">
-    <script type="module" src="component/Trans.js"></script>
-    <script  type="text/javascript" src="dist/trans.js"></script>
-    <script type="module" src="component/ChangeLanguage.js"></script>
     <script>
-        if (sessionStorage.getItem("IsLogin") !== "true") {
+        if (localStorage.getItem("IsLogin") !== "true") {
             location.replace("index.html")
         }
     </script>
@@ -25,17 +22,16 @@
 </div>
 <div style="display: none" id="body">
     <div style="background-color: white;margin-top: 0.75rem;padding: 2rem 1.5rem;">
-        <a style="position: absolute;top: 1rem;right: 2rem;" onclick="signOut()">
+        <a style="position: absolute;top: 2rem;right: 2.5rem;" onclick="signOut()">
             <img src="media/Signout.svg">
         </a>
-        <div style="position:absolute;top: 3.5rem;right: 0;"><change-language-component></change-language-component></div>
         <div style="display: flex;flex-direction: column;align-items: center" class="jumbotron">
             <img width="96" src="media/coda-logo.png">
             <h1 id="title" style="font-size: 1.3rem;font-weight: 600;text-align: center;margin: 1.5rem 0 2rem"
-                class="display-4"><trans-component text="Welcome"></trans-component> <span id="user_name"></span>!</h1>
+                class="display-4">Welcome <span id="user_name"></span>!</h1>
             <div id="balance"
                  style="box-sizing:border-box;box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);color: white;background-color: var(--base-green);padding: 1rem 2rem;border-radius: 0.4rem;width: 100%">
-                <div id="vouchers-text" style="font-size: 1.3rem"><trans-component text="Vouchers available"></trans-component></div>
+                <div id="vouchers-text" style="font-size: 1.3rem">Vouchers available</div>
                 <div style="font-size: 2.8rem;font-weight: 600;margin-top: 2rem">$<span id="price">0</span></div>
             </div>
         </div>
@@ -44,12 +40,12 @@
             <a style="line-height:2.1rem;border-radius:0.5rem;box-sizing:border-box;padding: 0.5rem 1rem;color:black;width: 100%;border: 2px solid var(--base-green);font-size: 1.4rem;text-align: start"
                href="pay.html"
                class="clickButton">
-                <trans-component text="Use voucher"></trans-component>
+                Use Voucher
             </a>
             <a style="line-height:2.1rem;border-radius:0.5rem;box-sizing:border-box;padding: 0.5rem 1rem;color:black;width: 100%;border: 2px solid var(--base-green);font-size: 1.4rem;margin-top: 2.5rem;text-align: start"
                href="transaction_history.html"
                class="clickButton">
-                <trans-component text="Transaction History"></trans-component>
+                Transaction History
             </a>
         </div>
         <div id="social-kitchen-button"
@@ -57,47 +53,45 @@
             <a style="line-height:2.1rem;border-radius:0.5rem;box-sizing:border-box;padding: 0.5rem 1rem;color:black;width: 100%;border: 2px solid var(--base-green);font-size: 1.4rem;text-align: start"
                href="receive.html"
                class="clickButton">
-                <trans-component text="Receive vouchers"></trans-component>
+                Receive Vouchers
             </a>
             <a style="line-height:2.1rem;border-radius:0.5rem;box-sizing:border-box;padding: 0.5rem 1rem;color:black;width: 100%;border: 2px solid var(--base-green);font-size: 1.4rem;margin-top: 2.5rem;text-align: start"
                href="redeem.html"
                class="clickButton">
-                <trans-component text="Settle vouchers"></trans-component>
+                Settle Vouchers
             </a>
             <a style="line-height:2.1rem;border-radius:0.5rem;box-sizing:border-box;padding: 0.5rem 1rem;color:black;width: 100%;border: 2px solid var(--base-green);font-size: 1.4rem;margin-top: 2.5rem;text-align: start"
                href="transaction_history.html"
                class="clickButton">
-                <trans-component text="Transaction History"></trans-component>
+                Transaction History
             </a>
         </div>
     </div>
     <div style="border: 1px solid var(--base-green);padding: 1.8rem 1.5rem;margin: 1.75rem 1.5rem 0;border-radius: 0.4rem">
         <h1 style="font-size: 1.3rem;font-weight: 700;text-align: center;margin-top: 0;">
-            <trans-component text="Help Center"></trans-component>
+            Help Center
         </h1>
         <div style="margin-top: 3rem;">
-            <collapse-component style="margin-top: 1.5rem;" name="Restaurant Information">
-                <div>Dignity Kitchen HK</div>
+            <collapse-component style="margin-top: 1.5rem;" name="Restaurant information">
+                <div>The Social Kitchen x Gila Makan @YMCA</div>
                 <br/>
-                <trans-component text="Address: 2/F, 618 Shanghai Street, Mongkok, Kowloon, HK."></trans-component>
+                <div>Address: YMCA of Singapore, 1 Orchard Road, Singapore 238824 (Level 4)</div>
                 <br/>
-                <trans-component text="Opening Hours: Monday - Saturday, Public Holidays & Public Holiday Eve: 11:00am - 8:00pm (Last order: 7:30pm)"></trans-component>
+                <div>Opening Hours: Daily 8am - 8pm (last order 7.30pm)</div>
                 <br/>
-                <trans-component text="Sunday: 11:00 am - 5:00pm (Last order: 4:30pm)"></trans-component>
+                <div>For reservations, please call 6261 1686.</div>
             </collapse-component>
-            <collapse-component style="margin-top: 1.5rem;line-height: 1rem;" name="How it works">
-                <!--            <div>The Charity project is a PBM (Purpose Bound Money) application.</div>-->
-                <!--            <br/>-->
-                <!--            <div>Based on blockchain, the voucher claimed by the project can only be used for consuming meals at the specific Social Kitchen branch.</div>-->
-                <!--            <br/>-->
-                <!--            <div>Learn more here.</div>-->
-            </collapse-component>
+            <div onclick="window.open('how_to_use.html','_self')"
+                 style="display: flex;align-items: center;margin-top:1.5rem;">
+                How it works
+                <img style="margin-left:0.2rem;width: 1.2rem;" src="media/link.svg">
+            </div>
             <collapse-component style="margin-top: 1.5rem;" name="Technical support">
-                <!--            <div>Please add What's app account: xyxd for more help.</div>-->
+                <div>Please add WhatsApp account: xyxd for more help.</div>
             </collapse-component>
         </div>
     </div>
-    <div style="text-align: center;font-size: 0.6rem;margin: 2rem 0"><trans-component text="Powered by CODA Bridge"></trans-component></div>
+    <div style="text-align: center;font-size: 0.6rem;margin: 2rem 0">Powered by CODA Bridge</div>
 </div>
 <script>
     const loadingPlace = document.getElementById("loading");
@@ -129,7 +123,7 @@
                 socialKitchenButton.style.display = "none";
                 break;
             case "1":
-                vouchersText.innerHTML = `<trans-component text="Total Vouchers Received"></trans-component>`
+                vouchersText.innerText = "Total Vouchers Received"
                 balancePlace.style.display = "block";
                 clientButton.style.display = "none";
                 socialKitchenButton.style.display = "flex";
@@ -139,13 +133,7 @@
         }
     }
 
-    //for dev
-    // loadingPlace.style.display = "none";
-    // bodyPlace.style.display = "block"
-    // clientButton.style.display = "flex";
-    // socialKitchenButton.style.display = "flex";
-
-    fetch("https://flows.thecharityproject.XYZ/webhook/kZPhvME8os49M9gmmovJ/profile", {
+    fetch("https://flows.thecharityproject.XYZ/webhook/mGf4HLHKeePxFzDHk7D1/profile", {
         method: 'GET',
         credentials: "include",
         headers: {
@@ -163,14 +151,14 @@
             sessionStorage.setItem("codaRole", role)
             switch (role) {
                 case "0":
-                    vouchersText.innerHTML = `<trans-component text="Vouchers available"></trans-component>`
+                    vouchersText.innerHTML = "Vouchers available"
                     balancePlace.style.display = "block";
                     clientButton.style.display = "flex";
                     socialKitchenButton.style.display = "none";
                     userName = data['firstname'];
                     break;
                 case "1":
-                    vouchersText.innerHTML = `<trans-component text="Total Vouchers Received"></trans-component>`
+                    vouchersText.innerHTML = "Total Vouchers Received"
                     balancePlace.style.display = "block";
                     clientButton.style.display = "none";
                     socialKitchenButton.style.display = "flex";

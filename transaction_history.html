@@ -15,14 +15,14 @@
         let domReady = false
 
         async function queryAllData() {
-            const fetchProfile = fetch("https://flows.thecharityproject.XYZ/webhook/kZPhvME8os49M9gmmovJ/profile_simple", {
+            const fetchProfile = fetch("https://flows.thecharityproject.XYZ/webhook/mGf4HLHKeePxFzDHk7D1/profile_simple", {
                 method: 'GET',
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
             })
-            const fetchTransactions = fetch(`https://flows.thecharityproject.XYZ/webhook/kZPhvME8os49M9gmmovJ/${role === 0 ? "user_transactions" : "merchant_transactions"}`, {
+            const fetchTransactions = fetch(`https://flows.thecharityproject.XYZ/webhook/mGf4HLHKeePxFzDHk7D1/${role === 0 ? "user_transactions" : "merchant_transactions"}`, {
                     method: 'GET',
                     credentials: "include",
                     headers: {
@@ -49,7 +49,7 @@
         }
 
         if (sessionStorage.getItem("IsLogin") !== "true") {
-            // location.replace("index.html")
+            location.replace("index.html")
         } else {
             role = sessionStorage.getItem("codaRole") || 0
             role = parseInt(role)
@@ -60,18 +60,14 @@
             domReady = true;
         })
     </script>
-    <script type="module" src="component/Trans.js"></script>
-    <script type="text/javascript" src="dist/trans.js"></script>
-    <script type="module" src="component/ChangeLanguage.js"></script>
     <link rel="icon" type="image/png" href="https://www.thecharityproject.xyz/media/coda-logo.png">
 </head>
 <body>
-<change-language-component></change-language-component>
 <a class="normalButton" style="display: flex;align-items:center;margin-top: 1.2rem;margin-left: 0.5rem;border: 1px solid var(--base-green);border-radius: 50%;width: min-content;" href="home.html">
     <img style="padding: 0.8rem;" width="22" height="22" src="media/Back.svg" alt="back">
 </a>
-<div style="text-align: center;">
-    <trans-component text="Transaction History"></trans-component>
+<div style="text-align: center">
+    Transaction History
     <img id="export-icon" onclick="exportCsv()" style="margin-left: 2rem;position: absolute;width: 2rem;display: none;"
          src="https://www.thecharityproject.xyz/media/Export.svg">
 </div>
@@ -90,7 +86,6 @@
     </div>
 </div>
 <link href="dist/css/index.css" rel="stylesheet">
-<script type="module" src="component/TransactionTab.js"></script>
 <script type="module" src="component/Selector.js"></script>
 <script>
     const historyPlace = document.getElementById("history-place")
@@ -108,24 +103,18 @@
         expense = profileData['balance']
         let incomeTitle = document.createElement("div")
         incomeTitle.style.marginRight = "0.25rem"
-        incomeTitle.innerHTML = role === 0 ? `<trans-component text="Distributed:"></trans-component>` : `<trans-component text="Income:"></trans-component>`
+        incomeTitle.innerText = role === 0 ? "Distributed:" : "Income:"
         incomePlace.appendChild(incomeTitle)
         incomePlace.appendChild(incomeValue)
         let expenseTitle = document.createElement("div")
         expenseTitle.style.marginRight = "0.25rem"
-        expenseTitle.innerHTML = role === 0 ? `<trans-component text="Redeemed:"></trans-component>` : `<trans-component text="Settled:"></trans-component>`
+        expenseTitle.innerText = role === 0 ? "Redeemed:" : "Settled:"
         expensePlace.appendChild(expenseTitle)
         expensePlace.appendChild(expenseValue)
         if (role === 1) {
             getTransaction(true)
             document.getElementById("export-icon").style.display = "inline-block";
         }
-    }
-
-    function getFirstDayOfMonthTimestamp() {
-        const now = new Date();
-        const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
-        return firstDay.setHours(0, 0, 0, 0);
     }
 
     const processTransaction = async (response) => {
@@ -149,9 +138,15 @@
         }
     }
 
+    function getFirstDayOfMonthTimestamp() {
+        const now = new Date();
+        const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+        return firstDay.setHours(0, 0, 0, 0);
+    }
+
     const getTransaction = async (reQuery) => {
         try {
-            const response = await fetch(`https://flows.thecharityproject.XYZ/webhook/kZPhvME8os49M9gmmovJ/${role === 0 ? "user_transactions" : "merchant_transactions"}`, {
+            const response = await fetch(`https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/${role === 0 ? "user_transactions" : "merchant_transactions"}`, {
                     method: 'GET',
                     credentials: "include",
                     headers: {
@@ -176,9 +171,9 @@
     }
 
     let current = new Date();
-    let startMonth = 4;
+    let startMonth = 11;
     let currentMonth = current.getMonth() + 1;
-    let startYear = 2024;
+    let startYear = 2023;
     let currentYear = current.getFullYear();
 
     function updateTimerList() {
@@ -203,21 +198,20 @@
         expense = 0
         income = 0
         historyPlace.innerHTML = ""
-        const date = new Date(monthStr.value);
+        const date = new Date(parseInt(monthStr.value));
         const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
         const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1).getTime() - 1;
         transactionData.filter(item => {
             const differentLength = 13 - item.timestamp.toString().length;
             const timestamp = item.timestamp * (10 ** differentLength);
-            console.log(timestamp)
             return timestamp >= firstDay && timestamp < lastDay;
         }).sort(function(a, b) {
             return b.timestamp - a.timestamp;
         }).forEach(item => {
             const comp = document.createElement('transaction-component');
-            comp.img = role === 0 ? "https://www.thecharityproject.xyz/media/RMHC.png" : "";
+            comp.img = role === 0 ? "https://www.thecharityproject.xyz/media/kitchen-logo.png" : "";
             comp.role = role;
-            comp.name = (role === 0 && item.amount >= 0 || role === 1 && item.amount <= 0) ? "RMHC" : item.merchant_name || (item.user_name.slice(0,4) + (item.user_name.length > 4 ? "****" : "") + " (" + item.user_phone + ")");
+            comp.name = (role === 0 && item.amount >= 0 || role === 1 && item.amount <= 0) ? "Ray of Hope" : item.merchant_name || (item.user_name + " (" + item.user_phone + ")");
             comp.price = item.amount;
             if (item.amount < 0) {
                 expense += Math.abs(item.amount);
@@ -235,7 +229,7 @@
         expenseValue.style.fontWeight = "600";
     }
 
-    timeSelector.defaultValue = new Date();
+    timeSelector.defaultValue = getFirstDayOfMonthTimestamp();
     timeSelector.type = "time"
     timeSelector.changeCallBack = filterByMonth
     const titlePart = document.getElementById("title")
@@ -265,7 +259,7 @@
                         if (header === "timestamp") {
                             return formatTimestamp(row[header])
                         } else if (header === "user_name" && !row[header]) {
-                            return "RMHC"
+                            return "Ray of Hope"
                         } else {
                             return `"${row[header] || ''}"`
                         }
