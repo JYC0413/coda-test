@@ -15,14 +15,14 @@
         let domReady = false
 
         async function queryAllData() {
-            const fetchProfile = fetch("https://code.flows.network/webhook/mGf4HLHKeePxFzDHk7D1/profile_simple", {
+            const fetchProfile = fetch("https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/profile_simple", {
                 method: 'GET',
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
             })
-            const fetchTransactions = fetch(`https://code.flows.network/webhook/mGf4HLHKeePxFzDHk7D1/${role === 0 ? "user_transactions" : "merchant_transactions"}`, {
+            const fetchTransactions = fetch(`https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/${role === 0 ? "user_transactions" : "merchant_transactions"}`, {
                     method: 'GET',
                     credentials: "include",
                     headers: {
