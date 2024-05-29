@@ -169,7 +169,7 @@
     function login() {
         loginRolling.style.display = "block";
         closeLogin();
-        fetch('https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/login/' + code, {
+        fetch('https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/login/' + code, {
             method: 'GET',
             credentials: "include",
             headers: {
@@ -206,7 +206,7 @@
     function sendQuery() {
         getCodeNote.style.display = "block";
         buttonText.innerText = "Sending";
-        fetch('https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/login_phone', {
+        fetch('https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/login_phone', {
             method: 'POST',
             credentials: "include",
             headers: {
