@@ -102,7 +102,7 @@
         backHomeButton.style.display = "none";
         resultText.innerHTML = `<div>Your redeem is in process.</div><br/><div>Please do not leave this page.</div>`
         const thisAmount = parseFloat(amountInput.value)
-        fetch("https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/merchant_redeem", {
+        fetch("https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/merchant_redeem", {
             method: 'POST',
             credentials: "include",
             headers: {
@@ -182,7 +182,7 @@
         })
     }
 
-    fetch("https://code.flows.network/webhook/SLFDLigNPMYAJPWQnF2i/profile", {
+    fetch("https://flows.thecharityproject.XYZ/webhook/SLFDLigNPMYAJPWQnF2i/profile", {
         method: 'GET',
         credentials: "include",
         headers: {
