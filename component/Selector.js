@@ -59,6 +59,12 @@ class Selector extends HTMLElement {
         this.dispatchEvent(new CustomEvent('changeCallBack', {
             composed: true
         }));
+        function transDate(dateText) {
+            const fixData = parseInt(dateText) * Math.pow(10, 13 - dateText.toString().length)
+            const month = new Date(fixData).toLocaleString("en-US", {month: 'short'});
+            const year = new Date(fixData).getFullYear();
+            return month + " " + year;
+        }
 
         function getFirstDayOfMonthTimestamp() {
             const now = new Date();
@@ -88,7 +94,7 @@ class Selector extends HTMLElement {
                 if (this.defaultValue) {
                     if (that.type === "time") {
                         const nowTime = new Date(getFirstDayOfMonthTimestamp())
-                        this.defaultValue = {name: nowTime.getTime(), value: nowTime.getTime()};
+                        this.defaultValue = {name: transDate(nowTime.getTime()), value: nowTime.getTime()};
                     }
                     setValue(this.defaultValue)
                 }
@@ -147,10 +153,10 @@ class Selector extends HTMLElement {
             let thisCheckValue
             select.style.color = "black"
             if (typeof value === "string") {
-                select.innerText = value
+                select.innerText = transDate(value)
                 thisCheckValue = value
             } else {
-                select.innerText = value.name
+                select.innerText = transDate(value.name)
                 thisCheckValue = value.value
             }
             roleInput.value = thisCheckValue
