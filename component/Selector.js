@@ -83,12 +83,12 @@ class Selector extends HTMLElement {
                 }
                 if (typeof value === "object") {
                     valueItem.id = value.value.toString();
-                    valueItem.name = value.name.toString();
-                    valueItem.innerText = value.name.toString();
+                    valueItem.name = transDate(value.name.toString());
+                    valueItem.innerText = transDate(value.name.toString());
                 } else {
                     valueItem.id = value.toString();
-                    valueItem.name = value.toString();
-                    valueItem.innerText = value.toString();
+                    valueItem.name = transDate(value.toString());
+                    valueItem.innerText = transDate(value.toString());
                 }
                 selectOptionList.appendChild(valueItem)
                 if (this.defaultValue) {
