@@ -81,9 +81,9 @@ class Selector extends HTMLElement {
                     item.innerText = transDate(item.name, "en-US");
                 } else {
                     if (item.id === roleInput.value) {
-                        select.innerText = t(item.name);
+                        select.innerText = item.name;
                     }
-                    item.innerText = t(item.name);
+                    item.innerText = item.name;
                 }
             })
         }
