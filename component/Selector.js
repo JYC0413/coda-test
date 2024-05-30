@@ -147,10 +147,10 @@ class Selector extends HTMLElement {
             let thisCheckValue
             select.style.color = "black"
             if (typeof value === "string") {
-                select.innerText = t(value)
+                select.innerText = value
                 thisCheckValue = value
             } else {
-                select.innerText = t(value.name)
+                select.innerText = value.name
                 thisCheckValue = value.value
             }
             roleInput.value = thisCheckValue
