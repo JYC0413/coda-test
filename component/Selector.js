@@ -60,6 +60,12 @@ class Selector extends HTMLElement {
             composed: true
         }));
 
+        function getFirstDayOfMonthTimestamp() {
+            const now = new Date();
+            const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+            return firstDay.setHours(0, 0, 0, 0);
+        }
+
         if (this.list) {
             this.list.forEach(value => {
                 const valueItem = document.createElement('div');
@@ -80,6 +86,10 @@ class Selector extends HTMLElement {
                 }
                 selectOptionList.appendChild(valueItem)
                 if (this.defaultValue) {
+                    if (that.type === "time") {
+                        const nowTime = new Date(getFirstDayOfMonthTimestamp())
+                        this.defaultValue = {name: nowTime.getTime(), value: nowTime.getTime()};
+                    }
                     setValue(this.defaultValue)
                 }
             })
@@ -134,17 +144,19 @@ class Selector extends HTMLElement {
         })
 
         function setValue(value) {
+            let thisCheckValue
             select.style.color = "black"
             if (typeof value === "string") {
-                select.innerText = value
-                roleInput.value = value
-            }else {
-                select.innerText = value.name
-                roleInput.value = value.value
+                select.innerText = t(value)
+                thisCheckValue = value
+            } else {
+                select.innerText = t(value.name)
+                thisCheckValue = value.value
             }
+            roleInput.value = thisCheckValue
             const divs = selectOptionList.querySelectorAll('div');
             divs.forEach(div => {
-                if (div.id !== value) {
+                if (div.id !== thisCheckValue) {
                     div.style.backgroundColor = "white";
                 } else {
                     div.style.backgroundColor = "rgba(73,176,93,0.5)";
