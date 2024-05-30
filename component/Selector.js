@@ -72,6 +72,22 @@ class Selector extends HTMLElement {
             return firstDay.setHours(0, 0, 0, 0);
         }
 
+        function transText() {
+            selectOptionList.querySelectorAll("div").forEach(item => {
+                if (that.type === "time") {
+                    if (item.id === roleInput.value) {
+                        select.innerText = transDate(item.name,"en-US");
+                    }
+                    item.innerText = transDate(item.name, "en-US");
+                } else {
+                    if (item.id === roleInput.value) {
+                        select.innerText = t(item.name);
+                    }
+                    item.innerText = t(item.name);
+                }
+            })
+        }
+
         if (this.list) {
             this.list.forEach(value => {
                 const valueItem = document.createElement('div');
@@ -83,12 +99,12 @@ class Selector extends HTMLElement {
                 }
                 if (typeof value === "object") {
                     valueItem.id = value.value.toString();
-                    valueItem.name = transDate(value.name.toString());
-                    valueItem.innerText = transDate(value.name.toString());
+                    valueItem.name = value.name.toString();
+                    valueItem.innerText = value.name.toString();
                 } else {
                     valueItem.id = value.toString();
-                    valueItem.name = transDate(value.toString());
-                    valueItem.innerText = transDate(value.toString());
+                    valueItem.name = value.toString();
+                    valueItem.innerText = value.toString();
                 }
                 selectOptionList.appendChild(valueItem)
                 if (this.defaultValue) {
@@ -99,6 +115,7 @@ class Selector extends HTMLElement {
                     setValue(this.defaultValue)
                 }
             })
+            transText();
             syncWidth();
         }
 
